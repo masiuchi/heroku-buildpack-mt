@@ -13,13 +13,13 @@ function indent() {
 BP_DIR=$(cd $(dirname $0); cd ..; pwd)
 BUILD_DIR=$1
 
+cp $BP_DIR/bin/.buildpacks $BUILD_DIR
+
 url=https://github.com/ddollar/heroku-buildpack-multi.git
 dir=$(mktemp -t buildpackXXXXX)
 rm -rf $dir
 
 git clone $url $dir >/dev/null 2>&1
-
-cp $BP_DIR/bin/.buildpacks $dir
 
 cd $dir
 
