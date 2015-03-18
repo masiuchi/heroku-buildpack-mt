@@ -13,33 +13,16 @@ function indent() {
 BP_DIR=$(cd $(dirname $0); cd ..; pwd)
 BUILD_DIR=$1
 
-cp $BP_DIR/bin/.buildpacks $BUILD_DIR
-
-
-
 url=https://github.com/ddollar/heroku-buildpack-multi.git
 dir=$(mktemp -t buildpackXXXXX)
 rm -rf $dir
 
 git clone $url $dir >/dev/null 2>&1
 
+cp $BP_DIR/bin/.buildpacks $dir
+
 cd $dir
 
-chmod -f +x $dir/bin/{detect,compile,release} || true
-
-framework=$($dir/bin/detect $1)
+chmod -f +x $dir/bin/compile || true
 
 $dir/bin/compile $1 $2 $3
-
-if [ $? != 0 ]; then
-  exit 1
-fi
-
-# check if the buildpack left behind an environment for subsequent ones
-if [ -e $dir/export ]; then
-  source $dir/export
-fi
-
-if [ -x $dir/bin/release ]; then
-  $dir/bin/release $1 > $1/last_pack_release.out
-fi
