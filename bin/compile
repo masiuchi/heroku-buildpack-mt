@@ -10,6 +10,8 @@ function indent() {
   esac
 }
 
+unset GIT_DIR
+
 BP_DIR=$(cd $(dirname $0); cd ..; pwd)
 BUILD_DIR=$1
 
