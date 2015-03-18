@@ -17,6 +17,8 @@ BUILD_DIR=$1
 
 cp $BP_DIR/bin/.buildpacks $BUILD_DIR
 
+touch $BUILD_DIR/mt.psgi
+
 url=https://github.com/ddollar/heroku-buildpack-multi.git
 dir=$(mktemp -t buildpackXXXXX)
 rm -rf $dir
