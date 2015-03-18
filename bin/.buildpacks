@@ -1,0 +1,3 @@
+https://github.com/masiuchi/heroku-buildpack-multi.git#remove_buildpack_multi
+https://github.com/miyagawa/heroku-buildpack-perl.git
+https://github.com/heroku/heroku-buildpack-php.git
